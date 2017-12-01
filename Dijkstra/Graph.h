@@ -35,11 +35,12 @@ struct Graph
 	{
 		for (unsigned int i = 0; i < toNodes.size(); i++)
 		{
+			//Add this node to other nodes
 			Pair tmp(node, toNodes[i].value);
 			if (graph[toNodes[i].key][0].value == -1)
 				graph[toNodes[i].key].pop_back();
 			graph[toNodes[i].key].push_back(tmp);
-
+			//Add other nodes to this node
 			tmp.key = toNodes[i].key;
 			tmp.value = toNodes[i].value;
 			if (graph[node][0].value == -1)
@@ -58,5 +59,15 @@ struct Graph
 			}
 			cout << endl;
 		}
+	}
+	
+	int GetValue(int node_1, int node_2)
+	{
+		for (int i = 0; i < graph[node_1].size(); i++)
+		{
+			if (graph[node_1][i].key == node_2)
+				return graph[node_1][i].value;
+		}
+		return -1;
 	}
 };
